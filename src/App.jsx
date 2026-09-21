@@ -21,19 +21,30 @@ function App() {
           onChange={(e) => setBusca(e.target.value)}
         />
       </section>
-      <main className="lista-eventos">
-        {eventosFiltrados.map((evento) => (
-          <EventoCard
-            key={evento.id}
-            titulo={evento.titulo}
-            tipo={evento.tipo}
-            data={evento.data}
-            local={evento.local}
-            vagas={evento.vagas}
-            palestrante={evento.palestrante}
-          />
-        ))}
-      </main>
+
+      {busca !== "" && (
+          <p className="contador">
+            {eventosFiltrados.length} evento(s) encontrado(s)
+          </p>
+        )}
+
+      {eventosFiltrados.length === 0 ? (
+        <p className="lista-vazia">Nenhum evento encontrado para "{busca}".</p>
+      ) : (
+        <main className="lista-eventos">
+          {eventosFiltrados.map((evento) => (
+            <EventoCard
+              key={evento.id}
+              titulo={evento.titulo}
+              tipo={evento.tipo}
+              data={evento.data}
+              local={evento.local}
+              vagas={evento.vagas}
+              palestrante={evento.palestrante}
+            />
+          ))}
+        </main>
+      )}
       <Rodape />
     </>
   );
