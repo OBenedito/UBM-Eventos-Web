@@ -20,13 +20,18 @@ function App() {
           value={busca}
           onChange={(e) => setBusca(e.target.value)}
         />
+        {busca !== "" && (
+          <button className="btn-limpar" onClick={() => setBusca("")}>
+            Limpar busca
+          </button>
+        )}
       </section>
 
       {busca !== "" && (
-          <p className="contador">
-            {eventosFiltrados.length} evento(s) encontrado(s)
-          </p>
-        )}
+        <p className="contador">
+          {eventosFiltrados.length} evento(s) encontrado(s)
+        </p>
+      )}
 
       {eventosFiltrados.length === 0 ? (
         <p className="lista-vazia">Nenhum evento encontrado para "{busca}".</p>
