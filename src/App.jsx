@@ -13,20 +13,33 @@ function App() {
   const eventosFiltrados = eventos.filter((evento) =>
     evento.titulo.toLowerCase().includes(busca.toLowerCase()),
   );
+
   useEffect(() => {
     async function carregarEventos() {
       try {
         const resposta = await axios.get("http://localhost:3001/eventos");
         setEventos(resposta.data);
-      } catch (excecao){
+      } catch (excecao) {
+         console.error(excecao);
         setErro(true);
       } finally {
         setCarregando(false);
       }
     }
     carregarEventos();
-  }, []); 
+  }, []);
 
+  if (carregando) {
+    return <p className="aviso">Carregando eventos...</p>;
+  }
+
+  if (erro) {
+    return (
+      <p className="aviso">
+        Não foi possível carregar os eventos. Verifique se a API está no ar.
+      </p>
+    );
+  }
   return (
     <>
       <Header />
