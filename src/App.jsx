@@ -5,20 +5,24 @@ import "./App.css";
 import Rodape from "./components/Rodape";
 import { useState } from "react";
 
-function App() { const [busca, setBusca] = useState('');
+function App() {
+  const [busca, setBusca] = useState("");
+  const eventosFiltrados = eventos.filter((evento) =>
+    evento.titulo.toLowerCase().includes(busca.toLowerCase()),
+  );
   return (
     <>
       <Header />
       <section className="busca">
         <input
           type="text"
-          placeholder="Busca evento pelo título..."
+          placeholder="Buscar evento pelo título..."
           value={busca}
           onChange={(e) => setBusca(e.target.value)}
         />
       </section>
       <main className="lista-eventos">
-        {eventos.map((evento) => (
+        {eventosFiltrados.map((evento) => (
           <EventoCard
             key={evento.id}
             titulo={evento.titulo}
