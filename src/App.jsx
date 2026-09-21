@@ -1,15 +1,32 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
 import Header from "./components/Header";
 import EventoCard from "./components/EventoCard";
-import { eventos } from "./data/eventos";
-import "./App.css";
 import Rodape from "./components/Rodape";
-import { useState } from "react";
+import "./App.css";
 
 function App() {
   const [busca, setBusca] = useState("");
+  const [eventos, setEventos] = useState([]);
+  const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState(false);
   const eventosFiltrados = eventos.filter((evento) =>
     evento.titulo.toLowerCase().includes(busca.toLowerCase()),
   );
+  useEffect(() => {
+    async function carregarEventos() {
+      try {
+        const resposta = await axios.get("http://localhost:3001/eventos");
+        setEventos(resposta.data);
+      } catch (excecao){
+        setErro(true);
+      } finally {
+        setCarregando(false);
+      }
+    }
+    carregarEventos();
+  }, []); 
+
   return (
     <>
       <Header />
