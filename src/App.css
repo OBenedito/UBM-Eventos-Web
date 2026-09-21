@@ -14,3 +14,14 @@
   background: #f5f7fb;
   min-height: 100vh;
 }
+.app-rodape {
+  background: #1e2761;
+  color: #cadcfc;
+  text-align: center;
+  padding: 20px 32px;
+  font-size: 0.9rem;
+}
+
+.app-rodape p {
+  margin: 4px 0;
+}

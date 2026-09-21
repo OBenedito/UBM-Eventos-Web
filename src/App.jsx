@@ -2,6 +2,7 @@ import Header from "./components/Header";
 import EventoCard from "./components/EventoCard";
 import { eventos } from "./data/eventos";
 import "./App.css";
+import Rodape from "./components/Rodape";
 
 function App() {
   return (
@@ -16,9 +17,11 @@ function App() {
             data={evento.data}
             local={evento.local}
             vagas={evento.vagas}
+            palestrante={evento.palestrante}
           />
         ))}
       </main>
+      <Rodape />
     </>
   );
 }

@@ -17,6 +17,13 @@
   border-radius: 999px;
 }
 
+.evento-palestrante {
+  color: #64748b;
+  font-size: 0.85rem;
+  margin: 8px 0 0;
+  font-style: italic;
+}
+
 .evento-card h3 { margin: 12px 0 6px; }
 .evento-info { color: #475569; margin: 0 0 8px; }
 .evento-vagas { color: #1e2761; font-weight: 600; margin: 0; }
