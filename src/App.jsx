@@ -3,11 +3,20 @@ import EventoCard from "./components/EventoCard";
 import { eventos } from "./data/eventos";
 import "./App.css";
 import Rodape from "./components/Rodape";
+import { useState } from "react";
 
-function App() {
+function App() { const [busca, setBusca] = useState('');
   return (
     <>
       <Header />
+      <section className="busca">
+        <input
+          type="text"
+          placeholder="Busca evento pelo título..."
+          value={busca}
+          onChange={(e) => setBusca(e.target.value)}
+        />
+      </section>
       <main className="lista-eventos">
         {eventos.map((evento) => (
           <EventoCard
