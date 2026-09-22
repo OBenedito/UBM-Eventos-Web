@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router";
 import axios from "axios";
 
 import EventoCard from "../components/EventoCard";
@@ -6,7 +7,8 @@ import EventoCard from "../components/EventoCard";
 
 
 function Home() {
-  const [busca, setBusca] = useState("");
+  const [params, setParams] = useSearchParams();
+  const busca = params.get("q") ?? "";
   const [eventos, setEventos] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState(false);
@@ -61,10 +63,10 @@ function Home() {
           type="text"
           placeholder="Buscar evento pelo título..."
           value={busca}
-          onChange={(e) => setBusca(e.target.value)}
+          onChange={(e) => setParams({q: e.target.value})}
         />
         {busca !== "" && (
-          <button className="btn-limpar" onClick={() => setBusca("")}>
+          <button className="btn-limpar" onClick={() => setParams({})}>
             Limpar busca
           </button>
         )}
