@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Header from "../components/Header";
+
 import EventoCard from "../components/EventoCard";
-import Rodape from "../components/Rodape";
+
 
 
 function Home() {
@@ -55,7 +55,7 @@ function Home() {
 
   return (
     <>
-      <Header />
+    
       <section className="busca">
         <input
           type="text"
@@ -94,7 +94,7 @@ function Home() {
           ))}
         </main>
       )}
-      <Rodape />
+      
     </>
   );
 }
