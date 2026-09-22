@@ -81,3 +81,19 @@
   color: #475569;
   font-size: 1.1rem;
 }
+.btn-tentar-novamente {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 8px 16px;
+  background-color: #1e2761;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-tentar-novamente:hover {
+  background-color: #2a3785;
+}

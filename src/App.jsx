@@ -14,8 +14,7 @@ function App() {
     evento.titulo.toLowerCase().includes(busca.toLowerCase()),
   );
 
-  useEffect(() => {
-    async function carregarEventos() {
+  async function carregarEventos() {
       try {
         const resposta = await axios.get("http://localhost:3001/eventos");
         setEventos(resposta.data);
@@ -26,7 +25,9 @@ function App() {
         setCarregando(false);
       }
     }
-    carregarEventos();
+
+  useEffect(() => {
+     carregarEventos();
   }, []);
 
   if (carregando) {
@@ -37,9 +38,21 @@ function App() {
     return (
       <p className="aviso">
         Não foi possível carregar os eventos. Verifique se a API está no ar.
+        <button
+          type="button"
+          className="btn-tentar-novamente"
+          onClick={() => {
+            setErro(false);
+            setCarregando(true);
+            carregarEventos();
+          }}
+        >
+          Tentar novamente
+        </button>
       </p>
     );
   }
+
   return (
     <>
       <Header />
