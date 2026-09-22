@@ -27,3 +27,15 @@
 .evento-card h3 { margin: 12px 0 6px; }
 .evento-info { color: #475569; margin: 0 0 8px; }
 .evento-vagas { color: #1e2761; font-weight: 600; margin: 0; }
+
+.evento-link {
+  display: inline-block;
+  margin-top: 12px;
+  color: #1e2761;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.evento-link:hover {
+  text-decoration: underline;
+}
