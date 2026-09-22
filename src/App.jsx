@@ -1,101 +1,13 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import Header from "./components/Header";
-import EventoCard from "./components/EventoCard";
-import Rodape from "./components/Rodape";
+import { Routes, Route } from "react-router";
+import Home from "./pages/Home";
 import "./App.css";
 
 function App() {
-  const [busca, setBusca] = useState("");
-  const [eventos, setEventos] = useState([]);
-  const [carregando, setCarregando] = useState(true);
-  const [erro, setErro] = useState(false);
-  const eventosFiltrados = eventos.filter((evento) =>
-    evento.titulo.toLowerCase().includes(busca.toLowerCase()),
-  );
-
-  async function carregarEventos() {
-      try {
-        const resposta = await axios.get("http://localhost:3001/eventos");
-        setEventos(resposta.data);
-      } catch (excecao) {
-         console.error(excecao);
-        setErro(true);
-      } finally {
-        setCarregando(false);
-      }
-    }
-
-  useEffect(() => {
-     carregarEventos();
-  }, []);
-
-  if (carregando) {
-    return <p className="aviso">Carregando eventos...</p>;
-  }
-
-  if (erro) {
-    return (
-      <p className="aviso">
-        Não foi possível carregar os eventos. Verifique se a API está no ar.
-        <button
-          type="button"
-          className="btn-tentar-novamente"
-          onClick={() => {
-            setErro(false);
-            setCarregando(true);
-            carregarEventos();
-          }}
-        >
-          Tentar novamente
-        </button>
-      </p>
-    );
-  }
-
   return (
-    <>
-      <Header />
-      <section className="busca">
-        <input
-          type="text"
-          placeholder="Buscar evento pelo título..."
-          value={busca}
-          onChange={(e) => setBusca(e.target.value)}
-        />
-        {busca !== "" && (
-          <button className="btn-limpar" onClick={() => setBusca("")}>
-            Limpar busca
-          </button>
-        )}
-      </section>
-
-      {busca !== "" && (
-        <p className="contador">
-          {eventosFiltrados.length} evento(s) encontrado(s)
-        </p>
-      )}
-
-      {eventosFiltrados.length === 0 ? (
-        <p className="lista-vazia">Nenhum evento encontrado para "{busca}".</p>
-      ) : (
-        <main className="lista-eventos">
-          {eventosFiltrados.map((evento) => (
-            <EventoCard
-              key={evento.id}
-              titulo={evento.titulo}
-              tipo={evento.tipo}
-              data={evento.data}
-              local={evento.local}
-              vagas={evento.vagas}
-              palestrante={evento.palestrante}
-            />
-          ))}
-        </main>
-      )}
-      <Rodape />
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+    </Routes>
   );
-}
+  }  
 
 export default App;
